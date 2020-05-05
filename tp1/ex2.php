@@ -1,3 +1,14 @@
+<?php 
+$size = 12;
+$color = 0;
+$message = "Aucun message";
+
+if(!empty($_GET['size']))$size=$_GET['size'];
+if(!empty($_GET['color']))$color=urldecode($_GET['color']);
+if(!empty($_GET['message']))$message=urldecode($_GET['message']);
+
+?>
+
 <!doctype html>
 <html lang="fr">
 <head>
@@ -12,22 +23,12 @@
 
 <body>
 
-	<h2><a href="./ex2.php?message=Message1&size=15&color=%23ff0000">Afficher "Message 1" en rouge, avec une taille de 15px</a></h2>
-	<h2><a href="./ex2.php?message=Message2&size=30&color=%232ff000">Afficher "Message 2" en vert, avec une taille de 30px</a></h2>
-	<h2><a href="./ex2.php?message=Message3&size=50&color=%230000ff">Afficher "Message 3" en bleu, avec une taille de 50px</a></h2>
+	<h2><a href="./ex2.php?message=Message1&size=15&color=%23ff0000">Afficher "Message1" en rouge, avec une taille de 15px</a></h2>
+	<h2><a href="./ex2.php?message=Message2&size=30&color=%232ff000">Afficher "Message2" en vert, avec une taille de 30px</a></h2>
+	<h2><a href="./ex2.php?message=Message3&size=50&color=%230000ff">Afficher "Message3" en bleu, avec une taille de 50px</a></h2>
 	
 	<p>
-		<?php if(!empty($_GET)) {
-
-			$size = 12;
-			$color = 0;
-			$message = "Aucun message";
-
-			if(!empty($_GET['size']))$size=$_GET['size'];
-			if(!empty($_GET['color']))$color=urldecode($_GET['color']);
-			if(!empty($_GET['message']))$message=urldecode($_GET['message']);
-
-			?>
+		<?php if(!empty($_GET)) { ?>
 
 			<div style="font-size: <?=$size?>px;color:<?=$color?>"><?=$message?></div>
 		<?php }else{ ?>
