@@ -1,4 +1,5 @@
 <?php
+$title="Exo4";
 include "header.php";
 
 $nbLignes = 2;
