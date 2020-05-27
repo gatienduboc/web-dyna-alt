@@ -3,6 +3,7 @@
 return array(
   '#namespace' => 'controllers',
   '#uses' => array (
+  'URequest' => 'Ubiquity\\utils\\http\\URequest',
   'AbstractWsController' => 'ws\\controllers\\AbstractWsController',
 ),
   '#traitMethodOverrides' => array (
@@ -20,10 +21,10 @@ return array(
     array('#name' => 'route', '#type' => 'Ubiquity\\annotations\\router\\RouteAnnotation', "partner/{name}","methods"=>["get"])
   ),
   'controllers\\MainController::partnersList' => array(
-    array('#name' => 'route', '#type' => 'Ubiquity\\annotations\\router\\RouteAnnotation', "/partners","methods"=>["get"])
+    array('#name' => 'route', '#type' => 'Ubiquity\\annotations\\router\\RouteAnnotation', "partners","methods"=>["get"],"name"=>"Partners")
   ),
   'controllers\\MainController::contactForm' => array(
-    array('#name' => 'route', '#type' => 'Ubiquity\\annotations\\router\\RouteAnnotation', "contact/","methods"=>["get"])
+    array('#name' => 'route', '#type' => 'Ubiquity\\annotations\\router\\RouteAnnotation', "contact","methods"=>["get"],"name"=>"Contact")
   ),
 );
 
