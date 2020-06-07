@@ -1,6 +1,7 @@
 <?php
 namespace controllers;
 use Ubiquity\orm\DAO;
+use models\Groupe;
 use models\Organization;
 
 /**
@@ -22,12 +23,19 @@ class Organizations extends \Ubiquity\controllers\ControllerBase{
     **/    
     public function display($idOrga,$idGroupe=null){
         $orga=DAO::getById(Organization::class, $idOrga,['users','groupes']);
-        $users=$this->users($orga->getUsers());
-        $this->jquery->renderView("Organizations/display.html",["orga"=>$orga,"users"=>$users]);
+        $users=$this->users($idOrga,$idGroupe,$orga->getUsers());
+        var_dump($idGroupe);
+        $this->jquery->renderView("Organizations/display.html",["orga"=>$orga,"users"=>$users,"idGroupe"=>$idGroupe]);
     }
     
-    protected function users($users=null){
-        $title="Tous les utilisateurs";
+    protected function users($idOrga,$idGroupe=null,$users=null){
+        if(isset($idGroupe)){
+            $group=DAO::getById(Groupe::class,$idGroupe,['users']);
+            $title=$group->getName();
+            $users=$group->getUsers();
+        }else{
+            $title="Tous les utilisateurs";
+        }
         return $this->loadView("Organizations/users.html",compact("users","title"),true);
     }
 

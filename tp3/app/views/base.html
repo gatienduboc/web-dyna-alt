@@ -2,6 +2,9 @@
     <div id="main">
         <h1>Messagerie Administration</h1>
 {% endblock %}
+{% block css %}
+	{{ css('css/style.css') | raw}}
+{% endblock %}
   
 {% block message %}
     {{ message | raw }}

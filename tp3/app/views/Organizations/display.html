@@ -18,8 +18,9 @@
         </h3>
         <ul>
         {% for groupe in orga.groupes %}
-            <li>{{ groupe }}</li>
+            <li><a class="{{ groupe.id == idGroupe ? 'active' : '' }}" href="{{ path('orgas-display',[orga.id,groupe.id]) }}" data-target="#users">{{ groupe }} {{ groupe.id == idGroupe ? '-->' : '' }}</a></li>
         {% endfor %}
+        <li><a class="{{ groupe.id is null ? 'active' : '' }}" href="{{ path('orgas-display',[orga.id]) }}" data-target="#users">Tous les utilisateurs {{ groupe.id is null ? '-->' : '' }}</a></li>
         </ul>
     </div>
     <div class="twelve wide column">
