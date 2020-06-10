@@ -4,6 +4,7 @@ namespace controllers;
 use Ubiquity\utils\http\UCookie;
 use Ubiquity\utils\http\URequest;
 use models\Rassemblement;
+use Ubiquity\utils\http\UResponse;
 
  /**
  * Controller FlashmobsController
@@ -24,14 +25,14 @@ class FlashmobsController extends ControllerBase{
 	}
 	
 	/**
-	 * @get("flashmobs/create","name"=>"flashmobs.create")
+	 * @get("/flashmobs/create","name"=>"flashmobs.create")
 	 */
 	public function flashmobsForm(){
 	    $this->loadView('FlashmobsController/flashmobsForm.html');
 	}
 	
 	/**
-	 *@post("flashmobs/create/do","name"=>"flashmobs.create.do")
+	 *@post("/flashmobs/create/do","name"=>"flashmobs.create.do")
 	 **/
 	public function flashmobsCreate(){
 	    $create=URequest::getDatas();
@@ -43,6 +44,16 @@ class FlashmobsController extends ControllerBase{
 	    $e->setActif(true);
 	    if(!DAO::insert($e)){
 	        $this->loadView("FlashmobsController/errors.html",["create_nom"=>$create["nom"]]);
+	    }else{
+	        UResponse::header("location","/flashmobs");
 	    }
+	}
+	
+	/**
+	 *@get("/flashmobs/","name"=>"flashmobs.list")
+	 */
+	public function flashmobsList(){
+	    $fs=DAO::getAll(Rassemblement::class,"actif=true");
+	    $this->loadView("FlashmobsController/flashmobsList.html",["flashmobs"=>$fs]);
 	}
 }
