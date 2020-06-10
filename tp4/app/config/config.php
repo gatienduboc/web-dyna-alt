@@ -9,7 +9,8 @@ return array(
 			"user"=>"root",
 			"password"=>"",
 			"options"=>array(),
-			"cache"=>false
+			"cache"=>false,
+			"wrapper"=>"Ubiquity\\db\\providers\\pdo\\PDOWrapper"
 			),
 	"sessionName"=>"s5ee0db5758705",
 	"namespaces"=>array(),
@@ -18,14 +19,12 @@ return array(
 			"cache"=>false
 			),
 	"test"=>false,
-	"debug"=>true,
+	"debug"=>false,
 	"logger"=>function (){return new \Ubiquity\log\libraries\UMonolog("tp4",\Monolog\Logger::INFO);},
 	"di"=>array(
-			"@exec"=>array(
-					"jquery"=>function ($controller){
+			"@exec"=>array("jquery"=>function ($controller){
 						return \Ubiquity\core\Framework::diSemantic($controller);
-					}
-					)
+					})
 			),
 	"cache"=>array(
 			"directory"=>"cache/",
