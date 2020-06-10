@@ -17,6 +17,13 @@ class FlashmobsController extends ControllerBase{
 	        $message="Il s'agit de votre première visite, bienvenue !";
 	        UCookie::set("flash-mob", true);
 	    }
-	    $this->loadDefaultView(["message"=>$message]);
+	    $this->loadDefaultView(["cookie_start"=>$message]);
+	}
+	
+	/**
+	 * @get("flashmobs/create","name"=>"flashmobs.create")
+	 */
+	public function flashmobsForm(){
+	    $this->loadView('FlashmobsController/flashmobsForm.html');
 	}
 }
