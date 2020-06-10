@@ -35,15 +35,10 @@ class FlashmobsController extends ControllerBase{
 	 *@post("/flashmobs/create/do","name"=>"flashmobs.create.do")
 	 **/
 	public function flashmobsCreate(){
-	    $create=URequest::getDatas();
-	    
 	    $e=new Rassemblement();
-	    $e->setNom($create["nom"]);
-	    $e->setLieu($create["lieu"]);
-	    $e->setDateHeure($create["date"]);
-	    $e->setActif(true);
+	    URequest::setValuesToObject($e);
 	    if(!DAO::insert($e)){
-	        $this->loadView("FlashmobsController/errors.html",["create_nom"=>$create["nom"]]);
+	        $this->loadView("FlashmobsController/errors.html",["create_nom"=>$e->getNom()]);
 	    }else{
 	        UResponse::header("location","/flashmobs");
 	    }
