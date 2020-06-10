@@ -24,7 +24,6 @@ class Organizations extends \Ubiquity\controllers\ControllerBase{
     public function display($idOrga,$idGroupe=null){
         $orga=DAO::getById(Organization::class, $idOrga,['users','groupes']);
         $users=$this->users($idOrga,$idGroupe,$orga->getUsers());
-        var_dump($idGroupe);
         $this->jquery->renderView("Organizations/display.html",["orga"=>$orga,"users"=>$users,"idGroupe"=>$idGroupe]);
     }
     

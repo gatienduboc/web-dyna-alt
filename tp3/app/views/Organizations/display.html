@@ -1,32 +1,29 @@
-{% extends "base.html" %}
-{% block header %}
-{{parent()}}
-    <a href="{{path('orgas-index',[''])}}" data-target="#main" class="ui black button">
-        <i class="ui backward icon"></i> Back to organizations
-    </a>
-{%endblock%}
-{% block body %}
-<h2 class="ui header">
-    {{orga.name}}
-    <div class="sub header">{{orga.domain}}</div>
-</h2>
-<div class="ui two columns grid">
-    <div class="four wide column">
-        <h3 class="ui header">
-            <i class="ui users icon"></i>
-            <div class="content">Groupes</div>
-        </h3>
-        <ul>
-        {% for groupe in orga.groupes %}
-            <li><a class="{{ groupe.id == idGroupe ? 'active' : '' }}" href="{{ path('orgas-display',[orga.id,groupe.id]) }}" data-target="#users">{{ groupe }} {{ groupe.id == idGroupe ? '-->' : '' }}</a></li>
-        {% endfor %}
-        <li><a class="{{ groupe.id is null ? 'active' : '' }}" href="{{ path('orgas-display',[orga.id]) }}" data-target="#users">Tous les utilisateurs {{ groupe.id is null ? '-->' : '' }}</a></li>
-        </ul>
-    </div>
-    <div class="twelve wide column">
-        <div id="users">
-        	{{users | raw}}
-        </div>
-    </div>
-</div>
-{% endblock %} 
+{% extends "base.html" %} {% block header %}
+<table class="ui striped table">
+	<thead>
+		<tr>
+			<th>Nom</th>
+			<th>Lieu</th>
+			<th class="right aligned">Date & heure</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>Fête de la musique</td>
+			<td><a class="ui label"><i class="street view icon"></i>Dans la rue</a></td>
+			<td class="right aligned">2020-12-25 00:00:00</td>
+		</tr>
+		<tr>
+			<td>Fête de la musique</td>
+			<td><a class="ui label"><i class="street view icon"></i>Dans la rue</a></td>
+			<td class="right aligned">2020-12-25 00:00:00</td>
+		</tr>
+		<tr>
+			<td>Fête de la musique</td>
+			<td><a class="ui label"><i class="street view icon"></i>Dans la rue</a></td>
+			<td class="right aligned">2020-12-25 00:00:00</td>
+		</tr>
+	</tbody>
+</table>
+<button class="ui green button">Retour à l'acccueil</button>
+{% endblock %}
